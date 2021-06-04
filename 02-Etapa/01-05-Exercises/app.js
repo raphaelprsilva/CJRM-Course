@@ -22,7 +22,7 @@
 
 // let index = 0;
 
-// while (index < 6) {
+// while (index <= 5) {
 //   console.log(index);
 
 //   index += 1;
@@ -46,7 +46,7 @@
   "Esta é a Xª vez que esta frase é exibida no console."
 */
 
-// for (let index = 1; index < 11; index += 1) {
+// for (let index = 1; index <= 10; index += 1) {
 //   console.log(`Esta é a ${index}ª vez que esta frase é exibida no console.`);
 // }
 
@@ -63,7 +63,7 @@ const cities = ['São Paulo', 'Rio de Janeiro', 'Minas Gerais']
 let upperCaseCities = [];
 
 for (let index = 0; index < cities.length; index += 1) {
-  upperCaseCities[index] = cities[index].toLowerCase();
+  upperCaseCities.push(cities[index].toUpperCase());
 }
 
 // console.log(upperCaseCities);
@@ -100,7 +100,7 @@ for (let index = 0; index < numbers.length; index += 1) {
   sumNumbers += Number(numbers[index]);
 }
 
-// console.log(sumNumbers);
+// console.log(sumNumbers === 337);
 
 /*
   07 - Comente o console.log acima.
@@ -127,7 +127,7 @@ const arrays = [
 let sumArrayNumbers = 0;
 
 for (let index = 0; index < arrays.length; index += 1) {
-  for (let index2 = 0; index < 3; index2 += 1) {
+  for (let index2 = 0; index2 < arrays[index].length; index2 += 1) {
     sumArrayNumbers += arrays[index][index2];
   }
 }
