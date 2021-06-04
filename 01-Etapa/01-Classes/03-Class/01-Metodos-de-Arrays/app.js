@@ -67,3 +67,13 @@ const pushToHeroes = newHeroes.push('Spider Man', 'Iron man');
 const popHeroes = newHeroes.pop();
 console.log(popHeroes);
 console.log(newHeroes);
+
+//----------------------------------------------
+// includes()
+//----------------------------------------------
+// Verifica se determinado valor do array, possuí um
+// valor específico.
+
+// O includes() faz um match, e retorna true or false
+const includesHero = newHeroes.includes('Batman');
+console.log(includesHero);
