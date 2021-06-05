@@ -32,6 +32,8 @@
 //   console.log('Nem pera nem abacaxi existem no array "fruits".');
 // }
 
+// ACERETEI - 01
+
 /*
   02
   - Armazene em uma constante apenas a hora atual na qual você está fazendo este  
@@ -43,17 +45,19 @@
   lógico precisam ter a constante especificada. Exemplo: hour > x && hour < y.
 */
 
-// const currentHour = 11;
+// const currentHour = 18;
+// const isMorning = currentHour >= 6 && currentHour < 12;
+// const isAfeternoon = currentHour >= 12 && currentHour < 18;
 
-// if (currentHour >= 6 && currentHour < 12) {
+// if (isMorning) {
 //   console.log('Bom dia!');
-// } else if (currentHour >= 12 && currentHour < 18) {
+// } else if (isAfeternoon) {
 //   console.log('Boa tarde!');
 // } else {
 //   console.log('Boa noite!');
 // }
 
-
+// ACERETEI - 02
 
 /*
   03
@@ -68,14 +72,20 @@
     também está funcionando.
 */
 
-// const myAge = 65;
+// const myAge = 31;
+// let priceMessage = null;
+// const isLowerThan7 = myAge <= 7;
+// const isBiggerThan65 = myAge >= 65;
 
-// if (myAge >= 0 && myAge <= 7 || myAge >= 65) {
-//   console.log('Para você, a entrada é grátis!');
+// if (isLowerThan7 || isBiggerThan65) {
+//   priceMessage = 'Para você, a entrada é grátis!';
 // } else {
-//   console.log('A entrada é R$ 30,00.');
+//   priceMessage = 'A entrada é R$ 30,00.';
 // }
 
+// console.log(priceMessage);
+
+// ACERETEI - 03
 
 /*
   04
@@ -86,15 +96,19 @@
 */
 
 // const numbers = [7, 92, 34, 46, 90, 25, 11, 3, 89, 76, 99];
-// const myNewArray = [];
+// const numbersBetween11And90 = [];
 
 // for (let index = 0; index < numbers.length; index += 1) {
-//   if (numbers[index] >= 11 && numbers[index] <= 90) {
-//     myNewArray.push(numbers[index]);
+//   const number = numbers[index];
+//   const isNumberBetween11And90 = number >= 11 && number <= 90;
+//   if (isNumberBetween11And90) {
+//     numbersBetween11And90.push(numbers[index]);
 //   }
 // }
 
-// console.log(myNewArray);
+// console.log(numbersBetween11And90);
+
+// ACERETEI - 04
 
 /*
   05
@@ -112,17 +126,23 @@
 // let numbers = 0;
 // let strings = 0;
 
-// for (let index = 0; index <= crazyArray.length; index += 1) {
-//   if (typeof crazyArray[index] === 'boolean') {
+// for (let index = 0; index < crazyArray.length; index += 1) {
+//   let typeOfCrazyArrayItem = typeof crazyArray[index];
+//   const isItemABoolean = typeOfCrazyArrayItem === 'boolean';
+//   const isItemANumber = typeOfCrazyArrayItem === 'number';
+
+//   if (isItemABoolean) {
 //     booleans += 1;
-//   } else if (typeof crazyArray[index] === 'number') {
+//   } else if (isItemANumber) {
 //     numbers += 1;
-//   } else if (typeof crazyArray[index] === 'string') {
+//   } else {
 //     strings += 1;
 //   }
 // }
 
 // console.log(`O crazyArray tem ${booleans} booleans, ${numbers} números e ${strings} strings.`);
+
+// ACERETEI - 05
 
 /*
   06
@@ -144,11 +164,22 @@ const oddNumbers = [];
 const evenNumbers = [];
 
 for (let index = 0; index < randomNumbers.length; index += 1) {
-  if(randomNumbers[index] % 2 === 0) {
-    evenNumbers.push(randomNumbers[index]);
+
+  const number = randomNumbers[index];
+  const isEvenNumber = number % 2 === 0;
+
+  if(isEvenNumber) {
+    evenNumbers.push(number);
   } else {
-    oddNumbers.push(randomNumbers[index]);
+    oddNumbers.push(number);
   }
 }
 
-console.log(`Numeros ímpares: ${oddNumbers.join(', ').replace(', ', ' e ')}. Números pares: ${evenNumbers.join(', ').replace(', ', ' e ')}`);
+const evenNumbersString = oddNumbers.join(', ').replace(', 3', ' e 3');
+
+const oddNumbersString = evenNumbers.join(', ').replace(', 5', ' e 5');
+
+console.log(`Numeros ímpares: ${evenNumbersString}. Números pares: ${oddNumbersString}.`);
+
+
+// ERREI - 05
