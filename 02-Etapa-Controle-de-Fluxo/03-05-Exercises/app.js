@@ -6,6 +6,8 @@
 
 // console.log(!true, !false);
 
+// Acertei
+
 /*
   02
   - Abaixo do array "animals", verifique se o animal "leão" **não** existe no  
@@ -27,6 +29,7 @@ const animals = ['macaco', 'tucano', 'elefante', 'pavão', 'hipopótamo', 'leão
 //   }
 // }
 
+// Acertei
 
 /*
   03
@@ -39,21 +42,19 @@ const animals = ['macaco', 'tucano', 'elefante', 'pavão', 'hipopótamo', 'leão
 */
 
 const randomNumbers = [59, 61, 73, 57, 35, 73, 21, 87, 43];
-let sumOfNumbers = 0;
+let numbersSum = 0;
+const maxValue = 400;
 
-for (let index = 0; index < randomNumbers.length; index += 1) {
-  const desiredValue = 400;
-  const isSumBiggerThanDesiredValue = sumOfNumbers > desiredValue;
-  
-  
-  if (isSumBiggerThanDesiredValue) {
-    console.log(`A soma ultrapassou ${desiredValue}. Até aqui, o valor atual é ${sumOfNumbers}`);
-    break;
-  }
-  sumOfNumbers += randomNumbers[index];
-}
+// for (let index = 0; index < randomNumbers.length; index += 1) {
+//   if (numbersSum > maxValue) {
+//     console.log(`A soma ultrapassou ${maxValue}. Até aqui, o valor atual é ${numbersSum}.`);
+//     break;
+//   }
+//   numbersSum += randomNumbers[index];
+// }
 
-
+// ERREI
+// Corrigido
 
 
 /*
@@ -79,17 +80,18 @@ for (let index = 0; index < sentence.length; index += 1) {
   } else if (isIndexEqualLastIndex) {
     concatSentence += sentence[index];
   } else {
-    concatSentence += sentence[index] + ' ';
+    concatSentence += `${sentence[index]} `;
   }
 }
 
 // console.log(concatSentence);
 
+// Acertei
+
 /*
   05
   - Itere sobre o array "randomValues" apenas até a 4ª string dele;
-  - Exiba a string abaixo no console, mantendo a formatação de lista e inserindo  
-    as informações corretas:
+  - Exiba a string abaixo no console, mantendo a formatação de lista e inserindo as informações corretas:
   "
     3 informações sobre o array randomValues:
       - As primeiras 4 strings são XX, XX, XX e XX;
@@ -100,28 +102,43 @@ for (let index = 0; index < sentence.length; index += 1) {
 
 const randomValues = [57, false, 'JS', [], true, 'HTML', 31, null, false, 'CSS', 97, true, 'Git', 11, 'sticker', false, 'GitHub', true, null];
 
-let amountOfStrings = [];
-let booleanCount = 0;
-let iteractionsCount = 0;
+let amountOfStrings = 0;
+let firstFourStrings = [];
+let amountOfBooleans = 0;
+let amountOfIterations = 0;
+
 
 for (let index = 0; index < randomValues.length; index += 1) {
-  if (typeof randomValues[index] === 'string') {
-    if (amountOfStrings.length === 3) {
-      amountOfStrings.push(randomValues[index]);
-      break;
-    }
-    amountOfStrings.push(randomValues[index]);
-  } else if (typeof randomValues[index] === 'boolean') {
-    booleanCount += 1;
+  const stringValue = randomValues[index];
+  const typeIsString = typeof randomValues[index] === 'string';
+  const typeIsBoolean = typeof randomValues[index] === 'boolean';
+
+  if (amountOfStrings === 4) {
+    break;
   }
-  iteractionsCount += 1;
+
+  if (typeIsString) {
+    firstFourStrings.push(stringValue);
+    amountOfStrings += 1;
+  }
+
+  if (typeIsBoolean) {
+    amountOfBooleans += 1;
+  }
+
+  amountOfIterations += 1;
 }
 
-// console.log(amountOfStrings);
-// console.log(booleanCount);
-// console.log(iteractionsCount);
+let lastItem = firstFourStrings[firstFourStrings.length - 1];
+let firstFourItems = firstFourStrings.join(', ').replace(`, ${lastItem}`, ` e ${lastItem}`);
 
+// console.log(`3 informações sobre o array randomValues:
+//   - As primeiras 4 strings são ${firstFourItems};
+//   - Até que as primeiras 4 strings fossem iteradas, ${amountOfBooleans} booleans foram iterados;
+//   - O array foi iterado por ${amountOfIterations} vezes.`);
 
+// Errei
+// Corrigido
 
 /*
   06
@@ -142,21 +159,26 @@ for (let index = 0; index < randomValues.length; index += 1) {
     da bebida além da que você escolheu.
 */
 
-const drinkType = 'água';
+const drinkType = 'águaa';
+let drinkMessage = null;
 
-// switch (drinkType) {
-//   case 'água':
-//     console.log('Substância química cujas moléculas são formadas por dois átomos de hidrogênio e um de oxigênio.')
-//     break;
-//   case 'refrigerante':
-//     console.log('Bebida não alcoólica e não fermentada, fabricada industrialmente, à base de água mineral e açúcar.');
-//     break;
-//   case 'suco':
-//     console.log('Bebida produzida do líquido extraído de frutos.');
-//     break;
-//   default:
-//     console.log('Bebida desconhecida.');
-// }
+switch (drinkType) {
+  case 'água':
+    drinkMessage = 'Substância química cujas moléculas são formadas por dois átomos de hidrogênio e um de oxigênio.';
+    break;
+  case 'refrigerante':
+    drinkMessage = 'Bebida não alcoólica e não fermentada, fabricada industrialmente, à base de água mineral e açúcar.';
+    break;
+  case 'suco':
+    drinkMessage = 'Bebida produzida do líquido extraído de frutos.';
+    break;
+  default:
+    drinkMessage = 'Bebida desconhecida.';
+}
+
+// console.log(drinkMessage);
+
+// Acertei, só não coloquei a 'drinkMessage'
 
 /*
   07
@@ -165,7 +187,8 @@ const drinkType = 'água';
     para testar o switch que você escreveu.
 */
 
-const a = 4;
+const number = 4;
+const numberMessage = 'O valor de "number" é';
 
 // if (a === 0) {
 //   console.log(`O valor de "a" é ${a}`)
@@ -175,13 +198,20 @@ const a = 4;
 //   console.log('O valor de "a" é qualquer número, exceto 0 e 1')
 // }
 
-// switch (a) {
+// switch (number) {
 //   case 0:
-//     console.log(`O valor de "a" é ${a}`);
+//     console.log(`${numberMessage} ${number}`);
 //     break;
 //   case 1:
-//     console.log(`O valor de "a" é ${a}`);
+//     console.log(`${numberMessage} ${number}`);
 //     break;
 //   default:
-//     console.log('O valor de "a" é qualquer número, exceto 0 e 1');
+//     console.log(`${numberMessage} qualquer número, exceto 0 e 1`);
 // }
+
+// Acertei, só faltou refatorar
+
+// Acertos = 5
+// Erros = 2
+// Total de Questões = 7
+// Aproveitamento = 70%
