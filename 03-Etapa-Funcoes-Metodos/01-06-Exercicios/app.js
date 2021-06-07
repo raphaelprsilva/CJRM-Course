@@ -208,4 +208,4 @@ const showPhrase = function (array) {
   return console.log(myPhrase);
 }
 
-showPhrase(functions);
+// showPhrase(functions);
