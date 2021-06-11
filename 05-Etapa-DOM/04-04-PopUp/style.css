@@ -13,6 +13,11 @@ button {
 }
 
 .popup-wrapper {
+  /* Esse aqui é o cara! Foi setado como none.
+    Caso isso não fosse feito, teríamos como padrão,
+    o popup sendo mostrado, sem nenhum botão ter sido
+    clicado.
+  */
   display: none;
   background: rgba(0, 0, 0, .5);
   position: fixed;
@@ -24,6 +29,8 @@ button {
 
 .popup {
   font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid pink;
+  border-radius: 10px;
   text-align: center;
   width: 100%;
   max-width: 300px;
