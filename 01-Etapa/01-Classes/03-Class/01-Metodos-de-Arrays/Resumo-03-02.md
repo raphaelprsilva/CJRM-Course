@@ -71,7 +71,7 @@ console.log(ages.indexOf(54));
 (Retorno: -1 - Ou seja, não foi encontrado o 54 no array)
 ~~~
 
-#### 2.2 Método ``concat()``
+#### 2.3 Método ``concat()``
 
 - ``concat()``: Concatena, une dois arrays e não modifica os arrays originais;
 
@@ -83,4 +83,60 @@ let newHeroes = ['Wonder Woman', 'Catwoman', 'Flash'];
 console.log(heroes.concat(newHeroes));
 (Tipo do Retorno: 'object')
 (Retorno: ['Batman', 'Catwoman', 'Iron man', 'Wonder Woman', 'Catwoman', 'Flash'])
+~~~
+
+#### 2.4 Método ``push()``
+
+- ``push()``: Adiciona elementos ao array desejado;
+- o método **altera** o array original;
+
+Exemplo: Tenho um array que contém o nome dos heróis, e eu desejo adicionar mais um herói (*Ant-man*) ao mesmo.
+
+~~~javascript
+let heroes = ['Batman', 'Catwoman', 'Iron man'];
+
+console.log(heroes.push('Ant-man'));
+
+(Tipo do Retorno: 'object')
+(Retorno: ['Batman', 'Catwoman', 'Iron man', 'Ant-man'])
+~~~
+
+**Obervação**: com o método ``push()``, é possível adicionar somente um elemento por vez, então, se por acaso, eu tentar fazer algo semelhante ao que o método ``concat()`` faz, teremos o resultado, conforme o código abaixo. O que não é o esperado.
+
+~~~javascript
+let heroes = ['Batman', 'Catwoman', 'Iron man'];
+let newHeroes = ['Wonder Woman', 'Catwoman', 'Flash'];
+
+console.log(heroes.push(newHeroes));
+
+(Tipo do Retorno: 'object')
+(Retorno: ['Batman', 'Catwoman', 'Iron man', ['Wonder Woman', 'Catwoman', 'Flash']])
+~~~
+
+#### 2.5 Método ``includes()``
+
+- ``includes()``: verifica se determinado elemento do array, inclui o elemento que eu desejo verificar;
+- o método **não altera** o array original;
+- o ``includes()`` faz um "match", e retorna ``true`` ou ``false``;
+
+**Exemplo 1**: Tenho um array que contém o nome dos heróis, e eu desejo verificar se existe algum elemento com o valor *'Ant-man'* ao mesmo.
+
+~~~javascript
+let heroes = ['Batman', 'Catwoman', 'Iron man'];
+
+console.log(heroes.includes('Ant-man'));
+
+(Tipo do Retorno: 'boolean')
+(Retorno: false)
+~~~
+
+**Exemplo 2**: Tenho um array que contém o nome dos heróis, e eu desejo verificar se existe algum elemento com o valor *'Catwoman'* ao mesmo.
+
+~~~javascript
+let heroes = ['Batman', 'Catwoman', 'Iron man'];
+
+console.log(heroes.includes('Catwoman'));
+
+(Tipo do Retorno: 'boolean')
+(Retorno: true)
 ~~~
