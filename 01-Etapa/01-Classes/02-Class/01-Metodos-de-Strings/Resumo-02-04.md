@@ -94,11 +94,11 @@ console.log(replaceWordAtEmail);
 (Retorno: 'bradpity@gmail.com')
 ~~~
 
-- Caso 2: 
+- Caso 2: tentando substituir um conjunto de caracteres que não existe na string
 ~~~javascript
 const email = 'tomcruise@gmail.com';
-const replaceWordAtEmail = myNewEmail.replace('tm', 'bradpity');
+const replaceWordAtEmail = email.replace('tm', 'bradpity');
 
 console.log(replaceWordAtEmail);
-(Retorno: 'bradpity@gmail.com')
+(Retorno: 'tomcruise@gmail.com')
 ~~~
