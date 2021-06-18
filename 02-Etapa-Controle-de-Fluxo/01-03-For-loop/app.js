@@ -19,9 +19,9 @@
 
 let names = ['Linus', 'Ada', 'Bill'];
 
-// for (let index = 0; index < names.length; index += 1) {
-//   console.log(names[index]);
-// }
+for (let index = 0; index < names.length; index += 1) {
+  console.log(names[index]);
+}
 
 /*-----------------------------------------------
   Exemplo 03
