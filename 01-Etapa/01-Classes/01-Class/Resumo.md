@@ -40,10 +40,7 @@ Caso eu tente reatribuir o valor de ``points``, para outro valor, no caso ``40``
 points = 40;
 ~~~
 
-Ao tentar reatribuir um valor para uma constante
-e tentar exibir essa mudança no console, o browser
-mostrará um erro, pois é uma 'CONSTANTE', e eu não
-posso alterá-la.
+Ao tentar reatribuir um valor para uma constante e tentar exibir essa mudança no console, o browser mostrará um erro, pois é uma 'CONSTANTE', e eu não posso alterá-la.
 
 ## Só para não esquecer
 

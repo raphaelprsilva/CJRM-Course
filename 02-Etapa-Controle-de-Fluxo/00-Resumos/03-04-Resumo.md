@@ -1,16 +1,14 @@
-/* ----------------------------------------------
-    Switch
------------------------------------------------*/
+# Resumo - Etapa 02 - Aula 03-04
 
-/* ----------------------------------------------
-    Exemplo 01
------------------------------------------------*/
+## Switch Statement (``switch``)
 
-/*
-  Útil para verificar uma variável ou constante, caso ela tenha n casos possíveis;
-*/
+- Podemos comparar a ``switch`` com o ``if-else``, pois a abordagem é semelhante;
+- Também é útil para verificar uma variável ou constante, caso ela tenha **n** casos possíveis;
 
-const grade = 'X';
+Exemplo 1:
+
+~~~javascript
+const grade = 'F';
 
 switch(grade) {
   case 'A':
@@ -31,4 +29,4 @@ switch(grade) {
   default:
     console.log('Nota inválida');
 }
-
+~~~

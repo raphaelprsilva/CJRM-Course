@@ -6,7 +6,7 @@
     Exemplo 01
 -----------------------------------------------*/
 
-const password = 'oi10';
+const password = 'oiasd10';
 
 if (password.length >= 12 && password.includes('1')) {
   console.log('Senha muito forte. 😃');
