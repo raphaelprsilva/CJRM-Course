@@ -8,4 +8,3 @@ const logArrayInfo = (socialNework, index, array) => {
 };
 
 socialNeworks.forEach(logArrayInfo);
-
