@@ -4,10 +4,14 @@ const article = document.querySelector('article');
 // Com o 'HTMLCollection', eu não consigo iterar com um 'forEach'
 // Para isso, eu preciso converter o 'HTMLCollection' em um 'NodeList'
 
+// console.log(article.children);
+
 // Como fazer isso?
 // Da maneira abaixo:
 
-// Array.from(article.children)
+Array.from(article.children);
+
+console.log(Array.from(article.children));
 
 
 // Essa invocação não é destrutiva, ou seja, não altera o valor original

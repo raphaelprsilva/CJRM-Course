@@ -1,11 +1,11 @@
-// const paragraph = document.querySelector('p');
+const paragraph = document.querySelector('p');
+
+paragraph.classList.add('error');
+paragraph.classList.add('success');
+paragraph.classList.add('success');
 
 // Obtém um DOMTokenlist com as classes do elemento 'p'
-// console.log(paragraph.classList);
-
-// paragraph.classList.add('error');
-// paragraph.classList.remove('error');
-// paragraph.classList.add('success');
+console.log(paragraph.classList);
 
 // Vou receber um NodeList, por isso, posso iterar sobre ele
 const paragraphs = document.querySelectorAll('p');

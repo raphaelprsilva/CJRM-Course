@@ -24,5 +24,5 @@ button.addEventListener('click', () => {
   // ul.append(li);
 
   // Add as FIRST child from 'ul'
-  ul.prepend(li);
+  ul.append(li);
 });

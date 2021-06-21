@@ -1,7 +1,7 @@
 const link = document.querySelector('a');
 
 // Pega o conteúdo do atributo 'href' do link 'a'
-// console.log(link.getAttribute('href'));
+console.log(link.getAttribute('href'));
 
 // Atribui um novo valor para o 'href' do link
 link.setAttribute('href', 'https://www.globoesporte.globo.com');
@@ -18,6 +18,8 @@ console.log(paragraph.getAttribute('class'));
 // Seta um novo atributo para a 'class', então, ao invés de ser 'error'
 // será 'success'
 paragraph.setAttribute('class', 'success');
+
+console.log(paragraph.getAttribute('class'));
 
 // Setar um atributo que não existe, no caso o 'style'
 // Não é algo recomendado, pois se eu fizer um novo setAttribute,

@@ -1,16 +1,16 @@
 const paragraph = document.querySelector('p');
 
-// paragraph.innerText += ' Texto inserido';
+paragraph.innerText += ' Texto inserido';
 
 const allParagraphs = document.querySelectorAll('p');
 
-// allParagraphs.forEach((paragraph, index) => {
-//   paragraph.innerText += ` Novo Texto ${index + 1}`;
-// });
+allParagraphs.forEach((paragraph, index) => {
+  paragraph.innerText += ` Novo Texto ${index + 1}`;
+});
 
 const div = document.querySelector('.content');
 
-// div.innerHTML += `<h2>Novo h2</h2>`;
+div.innerHTML += `<h2>Novo h2</h2>`;
 
 const people = ['Raphael', 'Rodrigo', 'Marcos'];
 

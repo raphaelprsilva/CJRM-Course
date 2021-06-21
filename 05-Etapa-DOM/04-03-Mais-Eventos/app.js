@@ -10,7 +10,7 @@ paragraph.addEventListener('copy', () => {
 });
 
 /*----------------------------------------------------
-  copyEvent
+  mousemove
 ----------------------------------------------------*/
 const div = document.querySelector('.box');
 
