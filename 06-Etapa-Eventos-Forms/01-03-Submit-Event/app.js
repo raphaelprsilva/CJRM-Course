@@ -16,13 +16,13 @@ form.addEventListener('submit', (event) => {
 
   // É uma maneira de se capturar o que foi digitado pelo usuário
   // no input
-  // console.log(usernameInput.value);
+  console.log(usernameInput.value);
 
   // Outra maneira, é através do 'id', presente campo 'input' do 'form'
   // console.log(form.username);
 
   // Se eu quiser o valor dentro do input, podemos fazer:
-  // console.log(form.username.value);
+  console.log(form.username.value);
 
   // Se eu substituir o 'id' por 'name', na prop do 'input', eu consigo
   // capturar o valor digitado no 'input'

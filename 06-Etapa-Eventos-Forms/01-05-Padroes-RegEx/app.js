@@ -20,13 +20,13 @@ const pattern = /^[a-z]{6,}$/;
 
 // Aqui, estou testando se a constante 'pattern' dá um 'match' com a constante
 // 'username'. Se for verdadeiro, o retorno será 'true', senão, será 'false'.
-// const isAMatch = pattern.test(username);
+const isAMatch = pattern.test(username);
 
-// if (isAMatch) {
-//   console.log('O teste da regex passou');
-// } else {
-//   console.log('Não passou!')
-// }
+if (isAMatch) {
+  console.log('O teste da regex passou');
+} else {
+  console.log('Não passou!')
+}
 
 // OUTRA MANEIRA DE TESTAR
 

@@ -12,8 +12,7 @@
   eu desejo.
 
   Vamos utilizar o site: www.regex101.com
-  - Modifique a linguagem para: ECMAScript (JS)
-  
+  - Modifique a linguagem para: ECMAScript (JS);
   - Uma regEx começa e termina com '/';
   - ^javascript$ -> Dessa maneira, o match com a palavra 'javascript'
     só irá acontecer, se 'javascript' for o final do valor do input,
