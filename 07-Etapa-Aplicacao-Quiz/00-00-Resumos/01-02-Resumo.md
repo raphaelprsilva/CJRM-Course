@@ -1,33 +1,17 @@
-# Resumo - Etapa 06 - Aula 01-03
+# Resumo - Etapa 07 - Aula 01-02
 
-## Forms
+## Bootstrap
 
-- Quando eu quiser atrelar um ``eventListener`` em um formulário, eu preciso colocá-lo, no ``form``, e não no botão, como estávamos fazendo;
+- Bootstrap é uma biblioteca de componentes front-end;
 
-- **Exemplo 1**
+- Os componentes predefinidos do Bootstrap, pode nos ajudar a criar uma interface muito bacana;
 
-~~~HTML
-<form class="signup-form">
-    <input type="text" id="username" placeholder="username" autofocus>
-    <button>Enviar</button>
-  </form>
-~~~
+- Bootstrap é uma biblioteca ``css`` e ``javascript``;
 
-~~~javascript
-const form = document.querySelector('.signup-form');
-const usernameInput = document.querySelector('#username');
+- Formas de utilizar:
+    - link: https://getbootstrap.com/;
+    - Através de uma CDN:
+      - Clique em "**get started**";
+      - Copie o link do **css**, e adicione ao ``<head>`` do arquivo ``html``;
 
-form.addEventListener('submit', (event) => {
-  // Previne que a página seja recarregada, ao clicar no botão 'enviar'
-  event.preventDefault();
-
-  // É uma maneira de se capturar o que foi digitado pelo usuário no input
-  console.log(usernameInput.value);
-
-  // Se eu quiser o valor dentro do input, podemos fazer:
-  console.log(form.username.value);
-
-  // Também consigo capturar o valor do 'input', fazendo assim:
-  console.log(event.target.username.value);
-});
-~~~
+- Se eu quiser utilizar os meus estilos css, em paralelo com os do Bootstrap, eu preciso adicionar meu ``style.css``, após o link do Bootstrap;
