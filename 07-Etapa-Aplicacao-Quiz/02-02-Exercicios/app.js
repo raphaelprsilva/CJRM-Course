@@ -19,7 +19,37 @@ setTimeout(() => {
   - O clique no botão "Parar contador" deve fazer com que o contador exiba 0.
 */
 
+const counter = document.querySelector('.counter-container');
+const startCounterButton = document.querySelector('.button-init-counter');
+const pauseCounterButton = document.querySelector('.button-stop-counter');
 
+let accumulator = 0;
+
+let timer = null;
+
+const incrementCounter = () => {
+  // Primeira opção de resposta
+  // counter.textContent = ++accumulator;
+
+  // Segunda opção de resposta (Melhor Alternativa, pois não preciso reatribuir valores à outras variáveis)
+  const incrementedCounter = Number(counter.textContent) + 1;
+  counter.textContent = incrementedCounter;
+
+  // Terceira opção de resposta
+  // counter.textContent = accumulator + 1;
+  // accumulator += 1;
+};
+
+startCounterButton.addEventListener('click', () => {
+  timer = setInterval(incrementCounter, 1000);
+});
+
+const stopCounter = () => {
+  clearInterval(timer);
+  counter.textContent = 0;
+};
+
+pauseCounterButton.addEventListener('click', stopCounter);
 
 /* 
   04
