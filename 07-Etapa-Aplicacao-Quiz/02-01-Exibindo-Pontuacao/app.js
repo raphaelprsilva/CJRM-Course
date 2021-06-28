@@ -6,23 +6,37 @@ const correctAnswers = ['B', 'A', 'D', 'C'];
 let score = 0;
 
 const getUserAnswers = () => {
-  let userAnswers = [];
+  // let userAnswers = [];
 
-  correctAnswers.forEach((_, index) => {
-    const userAnswer = form[`inputQuestion${index + 1}`].value;
-    userAnswers.push(userAnswer);
+  let userAnswers = correctAnswers.map((_, index) => {
+    return form[`inputQuestion${index + 1}`].value;
   });
 
+  // correctAnswers.forEach((_, index) => {
+  //   const userAnswer = form[`inputQuestion${index + 1}`].value;
+  //   userAnswers.push(userAnswer);
+  // });
+
+  console.log(userAnswers);
   return userAnswers;
 };
 
 const calculateUserScore = (userAnswers) => {
-  userAnswers.forEach((userAnswer, index) => {
+  score = userAnswers.reduce((accumulator, userAnswer, index) => {
     const isUserAnswerCorrect = userAnswer === correctAnswers[index];
     if (isUserAnswerCorrect) {
-      score += 25;
+      accumulator += 25;
     }
-  });
+
+    return accumulator;
+  }, 0);
+
+//   userAnswers.forEach((userAnswer, index) => {
+//     const isUserAnswerCorrect = userAnswer === correctAnswers[index];
+//     if (isUserAnswerCorrect) {
+//       score += 25;
+//     }
+//   });
 };
 
 const showFinalScore = () => {

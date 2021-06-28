@@ -26,6 +26,7 @@ const pauseCounterButton = document.querySelector('.button-stop-counter');
 let accumulator = 0;
 
 let timer = null;
+let isCounterRunning = false;
 
 const incrementCounter = () => {
   // Primeira opção de resposta
@@ -41,12 +42,17 @@ const incrementCounter = () => {
 };
 
 startCounterButton.addEventListener('click', () => {
-  timer = setInterval(incrementCounter, 1000);
+  if (!isCounterRunning) {
+    timer = setInterval(incrementCounter, 1000);
+  }
+
+  isCounterRunning = true;
 });
 
 const stopCounter = () => {
   clearInterval(timer);
   counter.textContent = 0;
+  isCounterRunning = false;
 };
 
 pauseCounterButton.addEventListener('click', stopCounter);
