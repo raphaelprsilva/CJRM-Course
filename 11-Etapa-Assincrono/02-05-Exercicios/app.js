@@ -18,12 +18,14 @@
 // const request = new XMLHttpRequest();
 
 // request.addEventListener('readystatechange', () => {
-//   if (request.readyState === 4 && request.status === 200) {
+//   const isRequestOkay = request.readyState === 4 && request.status === 200;
+//   const isRequestNotOkay = request.readyState === 4;
+//   if (isRequestOkay) {
 //     console.log(request.responseText);
 //     return;
 //   }
 
-//   if (request.readyState === 4) {
+//   if (isRequestNotOkay) {
 //     console.log('Não foi possível obter os dados do pokémon');
 //   }
 // });
@@ -72,7 +74,7 @@ for (let index = 0; index < 5; index += 1) {
   user.addOneYear();
 }
 
-console.log(user);
+// console.log(user);
 
 /*
   04
@@ -91,10 +93,9 @@ user.setWalkedDistance = (distanceWalked) => {
   }
 };
 
-user.setWalkedDistance(3);
-user.setWalkedDistance(1);
-user.setWalkedDistance(4);
-user.setWalkedDistance(2);
+const meters = [2, 23, 4, 12];
+
+meters.forEach((meter) => user.setWalkedDistance(meter));
 
 // console.log(user);
 
@@ -114,13 +115,26 @@ user.setWalkedDistance(2);
       "metro", no singular.
 */
 
+const setPluralOrSingular = (user, singular, plural) => {
+  return user === 1 ? singular : plural;
+};
+
 user.getUserObjectInfo = () => {
-  const setAgeSingularOrPlural = user.age === 1 ? 'ano' : 'anos';
-  const setWalkedMetersSingularOrPlural =
-    user.walkedMeters === 1 ? 'metro' : 'metros';
-  const message = `Oi. Eu sou o ${user.name}, tenho ${user.age} ${setAgeSingularOrPlural},
-  ${user.height} metros de altura, peso ${user.weight} quilos e, só hoje, eu
-  já caminhei ${user.walkedMeters} ${setWalkedMetersSingularOrPlural}.`;
+  const { sex, age, height, name, weight, walkedMeters } = user;
+  const correctGender = sex === 'Male' ? 'o' : 'a';
+  const ageSingularOrPlural = setPluralOrSingular(age, 'ano', 'anos');
+  const walkedMetersSingularOrPlural = setPluralOrSingular(
+    walkedMeters,
+    'metro',
+    'metros'
+  );
+  const heightMetersPluralOrSingular = setPluralOrSingular(
+    height,
+    'metro',
+    'metros'
+  );
+
+  const message = `Oi. Eu sou ${correctGender} ${name}, tenho ${age} ${ageSingularOrPlural}, ${height} ${heightMetersPluralOrSingular} de altura, peso ${weight} quilos e, só hoje, eu já caminhei ${user.walkedMeters} ${walkedMetersSingularOrPlural}.`;
   return message;
 };
 
@@ -137,23 +151,16 @@ user.getUserObjectInfo = () => {
     - Faça isso até que 7 valores truthy sejam passados.
 */
 
-const checkTruthyOrFalsyElements = (value) => {
-  const falsyValues = [false, 0, -0, 0n, '', null, undefined, NaN];
-  return falsyValues.includes(value) ? false : true;
-};
+const falsyValues = [false, 0, -0, 0n, '', null, undefined, NaN];
+const truthyValues = [true, '0', () => {}, [], -1, 'false'];
 
-// console.log(checkTruthyOrFalsyElements(false));
-// console.log(checkTruthyOrFalsyElements(0));
-// console.log(checkTruthyOrFalsyElements(-0));
-// console.log(checkTruthyOrFalsyElements(''));
-// console.log(checkTruthyOrFalsyElements(null));
-// console.log(checkTruthyOrFalsyElements(undefined));
-// console.log(checkTruthyOrFalsyElements(NaN));
-// console.log(checkTruthyOrFalsyElements(1));
-// console.log(checkTruthyOrFalsyElements('Raphael'));
-// console.log(checkTruthyOrFalsyElements({}));
-// console.log(checkTruthyOrFalsyElements([]));
-// console.log(checkTruthyOrFalsyElements(() => {}));
+const isTruthy = (value) => Boolean(value);
+const logFalsyValues = (falsyValue) => console.log(isTruthy(falsyValue));
+const logTruthyValues = (truthyValue) => console.log(isTruthy(truthyValue));
+
+falsyValues.forEach(logFalsyValues);
+
+truthyValues.forEach(logTruthyValues);
 
 /*
   07
@@ -172,25 +179,25 @@ const checkTruthyOrFalsyElements = (value) => {
   Dica: propriedades de objetos podem ser declaradas como strings.
 */
 
-const myFunc = (bookName) => {
+const getBook = (bookName) => {
   const books = {
-    book1: {
-      numberOfpages: 100,
+    'Jurassic Park': {
+      totalPages: 100,
       author: 'Autor 1',
       publishingCompany: 'Company 1',
     },
-    book2: {
-      numberOfpages: 150,
+    'Harry Potter': {
+      totalPages: 150,
       author: 'Autor 2',
       publishingCompany: 'Company 2',
     },
-    book3: {
-      numberOfpages: 200,
+    'Um estranho sonhador': {
+      totalPages: 200,
       author: 'Autor 3',
       publishingCompany: 'Company 3',
     },
   };
-  return books[bookName] ? books[bookName] : books;
+  return books[bookName] || books;
 };
 
-// console.log(myFunc());
+console.log(getBook());
