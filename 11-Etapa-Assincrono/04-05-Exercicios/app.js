@@ -124,7 +124,7 @@ const nordeste = [
   'Paraíba',
 ];
 
-const newSudeste = brasil.splice(0, sudeste.length, sudeste);
+// const newSudeste = brasil.splice(0, sudeste.length, sudeste);
 
 // console.log('newSudeste: ', newSudeste);
 // console.log('brasil: ', brasil);
