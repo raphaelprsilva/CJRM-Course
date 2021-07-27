@@ -12,12 +12,14 @@ const getUsers = (url) =>
     const request = new XMLHttpRequest();
 
     request.addEventListener('readystatechange', () => {
-      if (request.readyState === 4 && request.status === 200) {
+      const isRequestOkay = request.readyState === 4 && request.status === 200;
+      const isRequestNotOkay = request.readyState === 4;
+      if (isRequestOkay) {
         const data = JSON.parse(request.responseText);
         resolve(data);
       }
 
-      if (request.readyState === 4) {
+      if (isRequestNotOkay) {
         reject('Não foi possível obter os dados dos usuários.');
       }
     });
@@ -43,17 +45,29 @@ getUsers('https://jsonplaceholder.typicode.com/users')
   - Se o operador não for válido, retorne a mensagem "Operação inválida."
 */
 
-const calculator = (operation) => {
-  const operations = ['+', '-', '*', '/', '%'];
-  const secondFunc = (param1, param2) => {
-    const operationResult = param1 + param2;
-    return `Resultado da operação: ${param1} ${operation} ${param2} = ${operationResult} .`;
-  };
+const getOperationMessage = (num1, num2, operator, operation) =>
+  `Resultado da operação: ${num1} ${operator} ${num2} = ${operation}`;
 
-  return secondFunc(1, 2);
+const calculator = (operator) => (num1, num2) => {
+  const operations = {
+    '+': getOperationMessage(num1, num2, operator, num1 + num2),
+    '-': getOperationMessage(num1, num2, operator, num1 - num2),
+    '*': getOperationMessage(num1, num2, operator, num1 * num2),
+    '/': getOperationMessage(num1, num2, operator, num1 / num2),
+    '%': getOperationMessage(num1, num2, operator, num1 % num2),
+  };
+  return operations[operator] || 'Operação Inválida.';
 };
 
-// console.log(calculator('-'));
+const sum = calculator('+');
+const subtraction = calculator('-');
+const multiplication = calculator('*');
+const division = calculator('/');
+
+// console.log(sum(2, 2));
+// console.log(subtraction(5, 3));
+// console.log(multiplication(2, 5));
+// console.log(division(10, 2));
 
 /*
   03
@@ -76,19 +90,9 @@ const sudeste = [
   'Espírito Santo',
 ];
 
-const brasil = [...sul, ...sudeste];
+const brasil = sul.concat(sudeste);
 
-const norte = ['Amazonas', 'Pará', 'Amapá'];
-
-brasil.unshift(...norte);
-
-brasil.shift();
-
-const newSul = brasil.filter((state) => sul.includes(state));
-
-console.log('newSul: ', newSul);
-
-console.log('Brazil: ', brasil);
+console.log(brasil, sul, sudeste);
 
 /*
   04
@@ -122,8 +126,8 @@ const nordeste = [
 
 const newSudeste = brasil.splice(0, sudeste.length, sudeste);
 
-console.log('newSudeste: ', newSudeste);
-console.log('brasil: ', brasil);
+// console.log('newSudeste: ', newSudeste);
+// console.log('brasil: ', brasil);
 
 /*
   05
