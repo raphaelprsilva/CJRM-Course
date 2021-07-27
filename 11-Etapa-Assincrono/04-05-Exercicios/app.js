@@ -92,7 +92,7 @@ const sudeste = [
 
 const brasil = sul.concat(sudeste);
 
-console.log(brasil, sul, sudeste);
+console.log(brasil);
 
 /*
   04
