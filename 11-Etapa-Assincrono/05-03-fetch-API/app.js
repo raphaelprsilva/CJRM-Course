@@ -12,3 +12,15 @@ const getUsers = async () => {
 }
 
 getUsers();
+
+
+  let counter = 30;
+
+let timer = setInterval(() => {
+  console.log(counter);
+  counter -= 1;
+  if (counter < 0) {
+    clearInterval(timer);
+  }
+}, 1000)
+
