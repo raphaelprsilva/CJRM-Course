@@ -1,9 +1,9 @@
-console.log(1);
-console.log(2);
+console.log('Primeira Chamada');
+console.log('Segunda Chamada');
 
 setTimeout(() => {
-  console.log('Função de callback executada');
+  console.log('dentro do timeout');
 }, 2000);
 
-console.log(3);
-console.log(4);
+console.log('Terceira Chamada');
+console.log('Quarta Chamada');

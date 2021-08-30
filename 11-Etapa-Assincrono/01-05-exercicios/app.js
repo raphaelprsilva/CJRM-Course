@@ -1,75 +1,72 @@
 /*
   01
+
   - Implemente um código assíncrono entre os console.log() abaixo.
 */
 
-// console.log('Linha 1');
-// console.log('Linha 2');
-// console.log('Linha 3');
-// console.log('Linha 4');
+console.log('Linha 1')
+console.log('Linha 2')
+console.log('Linha 3')
+console.log('Linha 4')
 
-// setTimeout(() => {
-//   console.log('Sou asíncrono');
-// }, 3000);
 
-// console.log('Linha 5');
-// console.log('Linha 6');
-// console.log('Linha 7');
-// console.log('Linha 8');
+
+console.log('Linha 5')
+console.log('Linha 6')
+console.log('Linha 7')
+console.log('Linha 8')
 
 /*
   02
+
   - Descomente o código abaixo e crie a função que fará a string dentro da 
     "logGreeting" ser exibida no console.
 */
 
-function logGreeting(name) {
-  console.log(`olá, ${name}`);
+function logGreeting (name) {
+  console.log(`olá, ${name}`)
 }
 
-const x = (callback) => callback('Raphael');
-
-// x(logGreeting);
+// x(logGreeting)
 
 /*
   03
+
   - O código abaixo possui uma parte que pode ser isolada. Isole-a.
 */
 
-const numbers = [3, 4, 10, 20];
-const checkLowerThanFive = (num) => num < 5;
-const lesserThanFive = numbers.filter(checkLowerThanFive);
+const numbers = [3, 4, 10, 20]
+const lesserThanFive = numbers.filter(num => num < 5)
 
-// console.log(lesserThanFive);
+console.log(lesserThanFive)
 
 /*
   04
+
   - Refatore o código abaixo.
 */
 
-const prices = [12, 19, 7, 209];
-const getTotalPrice = (accumulator, price) => accumulator + price;
+const prices = [12, 19, 7, 209]
+let totalPrice = 0
 
-const totalPrice = prices.reduce(getTotalPrice, 0);
+for (let i = 0; i < prices.length; i++) {
+  totalPrice += prices[i]
+}
 
-// console.log(`Preço total: ${totalPrice}`);
+console.log(`Preço total: ${totalPrice}`)
 
 /*
   05
+
   - Abaixo da declaração do objeto "car", modifique a cor do carro para 'azul';
   - Não insira `car.color = azul`.
 */
 
-let car = { color: 'amarelo' };
-
-let secondCar = car;
-
-secondCar.color = 'azul';
-
-// console.log(car, secondCar);
+let car = { color: 'amarelo' }
 
 /*
   06
+
   - Crie uma função que recebe 3 argumentos;
   - Se um dos 3 argumentos não for passado na invocação, a string 'A função 
     deve ser invocada com 3 argumentos' deve ser retornada;
@@ -77,17 +74,9 @@ secondCar.color = 'azul';
     invocada com 3 argumentos'.
 */
 
-const myFunc = (arg1, arg2, arg3) => {
-  const isSomeParameterUndefined = [arg1, arg2, arg3].includes(undefined);
-  return isSomeParameterUndefined
-    ? 'A função deve ser invocada com 3 argumentos'
-    : 'A função foi invocada com 3 argumentos';
-};
-
-// console.log(myFunc(1, 2, 1));
-
 /*
   07
+
   - O objeto abaixo representa uma caixa de livros com espaço para 5 livros e 
     que, no momento em que foi declarado, possui nenhum livro dentro;
   - Crie um método que irá adicionar livros na caixa;
@@ -109,52 +98,5 @@ const myFunc = (arg1, arg2, arg3) => {
 
 let booksBox = {
   spaces: 5,
-  booksIn: 0,
-};
-
-const getSingularOrPlural = (avaliableSpaces, singular, plural) =>
-  avaliableSpaces === 1 ? singular : plural;
-
-const getAvailableSpaces = (spaces, booksIn) => {
-  const avaliableSpaces = spaces - booksIn;
-  const fitPluralOrSingular = getSingularOrPlural(
-    avaliableSpaces,
-    'cabe',
-    'cabem'
-  );
-  const bookPluralOrSingular = getSingularOrPlural(
-    avaliableSpaces,
-    'livro',
-    'livros'
-  );
-  return `Só ${fitPluralOrSingular} mais ${avaliableSpaces} ${bookPluralOrSingular}`;
-};
-
-booksBox.addNewBooks = (booksToBeAdded) => {
-  const { spaces } = booksBox;
-
-  const isBoxFilled = spaces === booksBox.booksIn;
-  const boxSpacesAreNotEnought = booksBox.booksIn + booksToBeAdded > spaces;
-
-  if (isBoxFilled) {
-    return 'A caixa já está cheia';
-  }
-
-  if (boxSpacesAreNotEnought) {
-    return getAvailableSpaces(spaces, booksBox.booksIn);
-  }
-
-  booksBox.booksIn += booksToBeAdded;
-  const bookPluralOrSingular = getSingularOrPlural(
-    booksBox.booksIn,
-    'livro',
-    'livros'
-  );
-  return `Já há ${booksBox.booksIn} ${bookPluralOrSingular} na caixa`;
-};
-
-console.log(booksBox.addNewBooks(2));
-console.log(booksBox.addNewBooks(1));
-console.log(booksBox.addNewBooks(3));
-
-console.log(booksBox);
+  booksIn: 0
+}
