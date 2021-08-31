@@ -1,5 +1,6 @@
 /*
   01
+
   - Faça requests para a https://pokeapi.co/, da seguinte forma:
     - Encapsule o código do request em uma função que recebe os parâmetros 
       "url" e "callback";
@@ -12,50 +13,50 @@
       executado quando o request anterior for finalizado.
 */
 
-const getPokemon = (url, callback) => {
+const getPokemonsData = (pokemonName, callback) => {
   const request = new XMLHttpRequest();
-
+  
   request.addEventListener('readystatechange', () => {
-    const isRequestOkay = request.readyState === 4 && request.status === 200;
-    const isRequestNotOkay = request.readyState === 4;
-
-    if (isRequestOkay) {
+    if (request.readyState === 4 && request.status === 200) {
       const data = JSON.parse(request.responseText);
-      callback(null, data);
+      callback(null, data)
       return;
     }
-    if (isRequestNotOkay) {
-      callback('Não foi possível obter o Pokémon.', null);
+  
+    if (request.readyState === 4) {
+      callback('Was not possible to get data from API', null);
     }
-  });
-
-  request.open('GET', url);
+  })
+  
+  request.open('GET', `https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
   request.send();
 };
 
-const logPokemonData = (error, data) => {
-  return error
-    ? console.log(error)
-    : console.log(`Pokémon obtido: ${data.name}`);
-};
-
-const getPokemonUrl = (pokemonName) =>
-  `https://pokeapi.co/api/v2/pokemon/${pokemonName}`;
-
-getPokemon(getPokemonUrl('bulbasaur'), (error, data) => {
-  logPokemonData(error, data);
-
-  getPokemon(getPokemonUrl('charmander'), (error, data) => {
-    logPokemonData(error, data);
-
-    getPokemon(getPokemonUrl('squirtle'), (error, data) => {
-      logPokemonData(error, data);
-    });
-  });
-});
+// getPokemonsData('bulbasaur', (error, data) => {
+//   if (error) {
+//     console.log(error);
+//     return;
+//   }
+//   console.log(`Pokemon Obtido: ${data.name}`);
+//   getPokemonsData('charmander', (error, data) => {
+//     if (error) {
+//       console.log(error);
+//       return;
+//     }
+//     console.log(`Pokemon Obtido: ${data.name}`);
+//     getPokemonsData('squirtle', (error, data) => {
+//       if (error) {
+//         console.log(error);
+//         return;
+//       }
+//       console.log(`Pokemon Obtido: ${data.name}`);
+//     })
+//   })
+// })
 
 /*
   02
+
   - Há algumas etapas, implementamos o método some, do zero;
   - Neste exercício, seu desafio será criar o método map, do zero;
   - Implemente uma função "map" que possui a mesma funcionalidade do método  
@@ -75,65 +76,58 @@ getPokemon(getPokemonUrl('bulbasaur'), (error, data) => {
   curso, onde falaremos sobre TDD. Vá se aquecendo =)
 */
 
-const randonArray = [1, 2, 3];
-
-const myMapFunction = (array, callback) => {
+const map = (array, callback) => {
   let newArray = [];
 
-  const addNewItemToArray = (item) => {
-    const newItem = callback(item);
-    newArray.push(newItem);
-  };
-
-  array.forEach(addNewItemToArray);
+  for (let index = 0; index < array.length; index+= 1) {
+    newArray = [...newArray, callback(array[index])];
+  }
   return newArray;
 };
 
-// console.log(myMapFunction(randonArray, (number) => number * 2));
-// console.log(myMapFunction([4, 5, 6], (number) => number * 10));
+// console.log(map([1, 2, 3], number => number * 3));
+
 
 /*
   03
+
   - Descomente o console.log abaixo e faça o this do método referenciar o 
     objeto person.
 */
 
 const person = {
   name: 'Roger',
-  getName: () => person.name,
-};
+  getName: () => person.name
+}
 
-// console.log(person.getName());
+// console.log(person.getName())
 
 /*
   04
+
   - Descomente a 2ª const abaixo e salve este arquivo;
   - Um erro será exibido no console;
   - Faça as duas const x coexistirem, sem modificar o nome de qualquer uma 
     delas.
 */
 
-const x = 'x';
-
-const getX = () => {
-  const x = 'y';
-  return x;
-};
-
-// console.log(x, getX());
+const x = 'x'
+// const x = 'y'
 
 /*
   05
+
   - O código abaixo está funcionando. Refatore-o da forma mais concisa que você 
     conseguir.
 */
 
 const getFullName = ({ firstName, lastName }) => `${firstName} ${lastName}`;
 
-// console.log(getFullName({ firstName: 'Afonso', lastName: 'Solano' }));
+// console.log(getFullName({ firstName: 'Afonso', lastName: 'Solano' }))
 
 /*
   06
+
   - Crie uma função chamada 'convertToHex', que recebe o nome de uma cor por 
     parâmetro. Exemplo: 'red';
   - Escolha 5 cores que serão convertidas do nome da cor para o seu
@@ -145,36 +139,26 @@ const getFullName = ({ firstName, lastName }) => `${firstName} ${lastName}`;
   - Exiba o hexadecimal de 8 cores diferentes usando a função criada acima.
 */
 
-const convertToHex = (colorName) => {
+const convertToHex = (color) => {
   const colors = {
-    red: '#FF0000',
-    maroon: '#800000',
-    yellow: '#FFFF00',
-    olive: '#808000',
-    pink: '#FFC0CB',
+    'red': '#FF0000',
+    'black': '#000000',
+    'blue': '#0000FF',
+    'green': '#00FF00',
+    'white': '#FFFFFF',
   };
-  return colors[colorName]
-    ? `O hexadecimal para a cor ${colorName} é ${colors[colorName]}`
-    : `Não temos o equivalente hexadecimal para ${colorName}`;
+
+  return colors[color]
+    ? `O hexadecimal para a cor ${color} é ${colors[color]}`
+    : `Não temos o equivalente hexadecimal para ${color}`
 };
 
-const colors = [
-  'red',
-  'green',
-  'blue',
-  'olive',
-  'pink',
-  'maroon',
-  'white',
-  'purple',
-];
+// console.log(convertToHex('white'));
 
-const logColorMessage = (color) => console.log(convertToHex(color));
-
-// colors.forEach(logColorMessage);
 
 /*
   07
+
   - Através do array abaixo, gere um objeto com a frequência de idades das 
     pessoas;
   - Ou seja, se o array contém 3 pessoas com 18 anos, o objeto gerado deve ter 
@@ -183,23 +167,24 @@ const logColorMessage = (color) => console.log(convertToHex(color));
     diante.
   
   Resultado desejado: { 18: 3, 19: 2, 20: 1 }
+
   Dica: pesquise por Computed Property Names.
 */
 
 const people = [
-  { id: 5, name: 'Angelica', age: 18, federativeUnit: 'Pernambuco' },
+  { id: 5 , name: 'Angelica', age: 18, federativeUnit: 'Pernambuco' },
   { id: 81, name: 'Thales', age: 19, federativeUnit: 'São Paulo' },
   { id: 47, name: 'Ana Carolina', age: 18, federativeUnit: 'Alagoas' },
   { id: 87, name: 'Felipe', age: 18, federativeUnit: 'Minas Gerais' },
-  { id: 9, name: 'Gabriel', age: 20, federativeUnit: 'São Paulo' },
-  { id: 73, name: 'Aline', age: 19, federativeUnit: 'Brasília' },
+  { id: 9 , name: 'Gabriel', age: 20, federativeUnit: 'São Paulo' },
+  { id: 73, name: 'Aline', age: 19, federativeUnit: 'Brasília' }
 ];
 
-const createOrIncrementAgeFrequency = (accumulator, { age }) => {
-  accumulator[age] = accumulator[age] + 1 || 1;
-  return accumulator;
-};
+const peopleAgeFrequency = people.reduce((accumulator, { age }) => {
+  console.log('accumulator:', accumulator);
+  console.log('age:', age);
+  accumulator[age] = accumulator[age] + 1 || 1
+  return accumulator
+}, {});
 
-const agesFrequency = people.reduce(createOrIncrementAgeFrequency, {});
-
-console.log(agesFrequency);
+console.log('peopleAgeFrequency:', peopleAgeFrequency);
