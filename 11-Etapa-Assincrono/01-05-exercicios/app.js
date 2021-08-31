@@ -60,7 +60,9 @@ const prices = [12, 19, 7, 209]
 //   totalPrice += prices[i]
 // }
 
-const totalPrice = prices.reduce((accumulator, price) => accumulator + price, 0)
+const getTotalPrice = (accumulator, price) => accumulator + price;
+
+const totalPrice = prices.reduce(getTotalPrice, 0)
 
 // console.log(`Preço total: ${totalPrice}`)
 
@@ -89,14 +91,15 @@ const newCar = { ...car, color: 'azul' }
 */
 
 const myFunc = (arg1, arg2, arg3) => {
-  // const args = [arg1, arg2, arg3];
-  if (arg1 === undefined || arg2 === undefined || arg3 === undefined) {
-    return 'A função deve ser invocada com 3 argumentos';
-  }
-  return 'A função foi invocada com 3 argumentos';
+  const args = [arg1, arg2, arg3];
+  const isSomeParameterUndefined = args.includes(undefined);
+
+  return isSomeParameterUndefined
+    ? 'A função deve ser invocada com 3 argumentos'
+    : 'A função foi invocada com 3 argumentos'
 };
 
-// console.log(myFunc(1, 2));
+// console.log(myFunc(1, 2, 3));
 
 /*
   07
@@ -126,14 +129,25 @@ let booksBox = {
   addBoks: function(booksToAdd) {
     this.booksIn += booksToAdd;
     this.spaces -= booksToAdd;
-    return this.spaces <= 0
-      ?
-      'A caixa já está cheia'
-      : `Já há ${this.booksIn} livros na caixa`;
+
+    if(this.spaces < 0) {
+      return 'A caixa já está cheia'
+    }
+
+    if(this.booksIn + booksToAdd >= this.spaces) {
+      const pluralOrSingularBooks = this.spaces === 1 ? 'livro' : 'livros';
+      const pluralOrSingularCabem = this.spaces === 1 ? 'cabe' : 'cabem';
+      return `Só ${pluralOrSingularCabem} mais ${this.spaces} ${pluralOrSingularBooks}`;
+    }
+
+    return `Já há ${this.booksIn} livros na caixa.`;
+    // return this.spaces < 0
+    //   ? 'A caixa já está cheia'
+    //   : `Já há ${this.booksIn} livros na caixa`;
   }
 }
 
-// console.log(booksBox.addBoks(2));
-// console.log(booksBox.addBoks(2));
+console.log(booksBox.addBoks(1));
+// console.log(booksBox.addBoks(3));
 // console.log(booksBox.addBoks(1));
 // console.log(booksBox.addBoks(2));
