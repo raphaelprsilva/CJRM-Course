@@ -1,5 +1,6 @@
 /*
   01
+
   - Crie um objeto de request;
   - Abra este website https://pokeapi.co/;
   - Baseado no exemplo de endpoint exibido no website, abra uma requisição do 
@@ -18,15 +19,13 @@
 // const request = new XMLHttpRequest();
 
 // request.addEventListener('readystatechange', () => {
-//   const isRequestOkay = request.readyState === 4 && request.status === 200;
-//   const isRequestNotOkay = request.readyState === 4;
-//   if (isRequestOkay) {
-//     console.log(request.responseText);
+//   if (request.readyState === 4 && request.status === 200) {
+//     console.log('request.responseText: ', request.responseText);
 //     return;
 //   }
 
-//   if (isRequestNotOkay) {
-//     console.log('Não foi possível obter os dados do pokémon');
+//   if (request.readyState === 4) {
+//     console.log('Não foi foissível obter os dados do pokemon');
 //   }
 // });
 
@@ -35,6 +34,7 @@
 
 /*
   02
+
   - Crie um objeto que contém suas informações pessoais;
   - As propriedades devem armazenar: 
     - Seu nome;
@@ -47,37 +47,42 @@
     - Quantos metros você caminhou (number iniciado em 0).
 */
 
-const user = {
+const me = {
   name: 'Raphael',
-  sureName: 'Silva',
+  lastName: 'Silva',
   sex: 'Male',
   age: 28,
-  weight: 76,
-  height: 1.77,
+  height: 1.71,
+  weigth: 75,
   walking: false,
-  walkedMeters: 0,
+  walkedMetters: 0,
 };
 
 /*
   03
+
   - Logo abaixo, adicione ao objeto um método que adiciona 1 ao valor da 
     propriedade que armazena a idade;
   - A cada vez que o método é invocado, 1 deve ser somado à idade atual;
   - Após criar o método, adicione 5 anos à idade do objeto.
 */
 
-user.addOneYear = () => {
-  user.age += 1;
+// ! Não consegui desestruturar o objeto no método;
+me.increaseAge = () => {
+  me.age += 1;
 };
 
-for (let index = 0; index < 5; index += 1) {
-  user.addOneYear();
-}
+me.increaseAge();
+me.increaseAge();
+me.increaseAge();
+me.increaseAge();
+me.increaseAge();
 
-// console.log(user);
+console.log('me.age:', me.age); // Ainda está exibindo 28, na idade. Por que?
 
 /*
   04
+
   - Logo abaixo, adicione ao objeto um método que soma a quantidade de metros 
     caminhados ao valor que foi recebido como parâmetro do método;
   - Este método também deve modificar o boolean do objeto que indica se a 
@@ -86,21 +91,21 @@ for (let index = 0; index < 5; index += 1) {
     método 4x, com diferentes metragens passadas por parâmetro.
 */
 
-user.setWalkedDistance = (distanceWalked) => {
-  if (distanceWalked !== 0) {
-    user.walking = true;
-    user.walkedMeters += distanceWalked;
-  }
+me.increaseWalkedMetters = (walkedDistance) => {
+  me.walking = true;
+  me.walkedMetters += walkedDistance;
 };
 
-const meters = [2, 23, 4, 12];
+me.increaseWalkedMetters(1)
+me.increaseWalkedMetters(2)
+me.increaseWalkedMetters(3)
+me.increaseWalkedMetters(4)
 
-meters.forEach((meter) => user.setWalkedDistance(meter));
-
-// console.log(user);
+console.log('me.walkedMetters:', me.walkedMetters);
 
 /*
   05
+
   - Logo abaixo, adicione ao objeto um método que retorna a seguinte string:
   
   'Oi. Eu sou o NOME_COMPLETO, tenho IDADE anos, ALTURA metros de altura, 
@@ -115,33 +120,22 @@ meters.forEach((meter) => user.setWalkedDistance(meter));
       "metro", no singular.
 */
 
-const setPluralOrSingular = (user, singular, plural) => {
-  return user === 1 ? singular : plural;
+const singularOrPluralMessage = (property, comparison, singular, plural) =>
+  property === comparison ? singular : plural;
+
+me.personalInfos = () => {
+  const singularOrPluralSex = singularOrPluralMessage(me.sex, 'Male', 'o', 'a');
+  const singularOrPluralYears = singularOrPluralMessage(me.age, 1, 'ano', 'anos');
+  const meters = singularOrPluralMessage(me.height, 1, 'metro', 'metros');
+  const correctWalkedMetters = singularOrPluralMessage(me.walkedMetters, 1, 'metro', 'metros');
+  return console.log(`Oi. Eu sou ${singularOrPluralSex} ${me.name} ${me.lastName}, tenho ${me.age} ${singularOrPluralYears}, ${me.height} ${meters} de altura, peso ${me.weigth} quilos e, só hoje, eu já caminhei ${me.walkedMetters} ${correctWalkedMetters}.`)
 };
 
-user.getUserObjectInfo = () => {
-  const { sex, age, height, name, weight, walkedMeters } = user;
-  const correctGender = sex === 'Male' ? 'o' : 'a';
-  const ageSingularOrPlural = setPluralOrSingular(age, 'ano', 'anos');
-  const walkedMetersSingularOrPlural = setPluralOrSingular(
-    walkedMeters,
-    'metro',
-    'metros'
-  );
-  const heightMetersPluralOrSingular = setPluralOrSingular(
-    height,
-    'metro',
-    'metros'
-  );
-
-  const message = `Oi. Eu sou ${correctGender} ${name}, tenho ${age} ${ageSingularOrPlural}, ${height} ${heightMetersPluralOrSingular} de altura, peso ${weight} quilos e, só hoje, eu já caminhei ${user.walkedMeters} ${walkedMetersSingularOrPlural}.`;
-  return message;
-};
-
-// console.log(user.getUserObjectInfo());
+// me.personalInfos();
 
 /*
   06
+
   - Crie uma função que recebe um valor como argumento e retorna um boolean 
     indicando se o valor é truthy ou falsy;
   - Invoque a função e, a cada invocação, passe como argumento um valor falsy.
@@ -151,19 +145,22 @@ user.getUserObjectInfo = () => {
     - Faça isso até que 7 valores truthy sejam passados.
 */
 
-const falsyValues = [false, 0, -0, 0n, '', null, undefined, NaN];
-const truthyValues = [true, '0', () => {}, [], -1, 'false'];
+const checkTruthyAndFalsy = (value) => {
+  const falsyValues = [false, 0, -0, 0n, '', null, undefined, NaN];
+  return falsyValues.includes(value) ? 'falsy value' : 'truthy value';
+};
+
+// console.log(checkTruthyAndFalsy(undefined));
+
+// * Outra maneira de se fazer
 
 const isTruthy = (value) => Boolean(value);
-const logFalsyValues = (falsyValue) => console.log(isTruthy(falsyValue));
-const logTruthyValues = (truthyValue) => console.log(isTruthy(truthyValue));
 
-falsyValues.forEach(logFalsyValues);
-
-truthyValues.forEach(logTruthyValues);
+// console.log(isTruthy(null));
 
 /*
   07
+
   - Crie uma função que recebe um parâmetro, que será o nome de um livro;
   - Essa função deve conter um objeto com 3 propriedades, que são nomes de 
     livros;
@@ -176,28 +173,30 @@ truthyValues.forEach(logTruthyValues);
     parâmetro;
   - Se o parâmetro não for passado, faça a função retornar o objeto com todos 
     os livros.
+
   Dica: propriedades de objetos podem ser declaradas como strings.
 */
 
-const getBook = (bookName) => {
-  const books = {
-    'Jurassic Park': {
-      totalPages: 100,
-      author: 'Autor 1',
-      publishingCompany: 'Company 1',
+const booksFunc = (bookName) => {
+  const obj = {
+    'book1': {
+      pages: 10,
+      author: '1asd',
+      editora: '1asd',
     },
-    'Harry Potter': {
-      totalPages: 150,
-      author: 'Autor 2',
-      publishingCompany: 'Company 2',
+    'book2': {
+      pages: 20,
+      author: '2asd',
+      editora: '2asd',
     },
-    'Um estranho sonhador': {
-      totalPages: 200,
-      author: 'Autor 3',
-      publishingCompany: 'Company 3',
+    'book3': {
+      pages: 30,
+      author: '3asd',
+      editora: '3asd',
     },
   };
-  return books[bookName] || books;
+
+  return bookName ? obj[bookName] : obj;
 };
 
-console.log(getBook());
+console.log(booksFunc('book2'));
