@@ -141,9 +141,6 @@ let booksBox = {
     }
 
     return `Já há ${this.booksIn} livros na caixa.`;
-    // return this.spaces < 0
-    //   ? 'A caixa já está cheia'
-    //   : `Já há ${this.booksIn} livros na caixa`;
   }
 }
 
