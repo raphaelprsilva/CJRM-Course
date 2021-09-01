@@ -1,4 +1,4 @@
-const getData = (url) => {
+const getPokemons = (url) => {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
     
@@ -20,8 +20,16 @@ const getData = (url) => {
   })
 }
 
-getData('https://jsonplaceholder.typicode.com/todos/')
-  .then((todos) => console.log(todos))
+getPokemons('https://pokeapi.co/api/v2/pokemon/bulbasaur/')
+  .then((bulbasaur) => {
+    console.log(bulbasaur);
+    return getPokemons('https://pokeapi.co/api/v2/pokemon/ivysaur/')
+  })
+  .then((ivysaur) => {
+    console.log(ivysaur);
+    return getPokemons('https://pokeapi.co/api/v2/pokemon/venusaur/')
+  })
+  .then((venusaur) => console.log(venusaur))
   .catch((error) => console.log(error))
 
 // const getData = () => {
