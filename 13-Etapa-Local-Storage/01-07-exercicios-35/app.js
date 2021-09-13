@@ -17,7 +17,6 @@ const stringfiedUserData = JSON.stringify(userData);
 
 localStorage.setItem('userData', stringfiedUserData);
 
-
 const getItemFromLocalStorage = (key) => {
   const localStorageItem = localStorage.getItem(key);
   return JSON.parse(localStorageItem);
@@ -40,8 +39,8 @@ const getItemFromLocalStorage = (key) => {
 
 const input = document.querySelector('[data-js="input"]');
 
-input.addEventListener('input', event => {
-  console.log(event.target.valueAsNumber)
+input.addEventListener('input', (event) => {
+  console.log(event.target.valueAsNumber);
 });
 
 /*
@@ -81,7 +80,6 @@ const combineOperations = (initialValue, funcArray) => {
   return finalResult;
 };
 
-
 // console.log(combineOperations(0, [add100, divByFive, multiplyByThree]))
 // console.log(combineOperations(0, [divByFive, multiplyFive, addTen]))
 
@@ -97,37 +95,39 @@ const albums = [
     id: 537,
     title: 'The Dark Side of the Moon',
     artist: 'Pink Floyd',
-    price: 59.90,
-    genre: 'Progressive Rock'
+    price: 59.9,
+    genre: 'Progressive Rock',
   },
   {
     id: 975,
     title: 'Houses of the Holy',
     artist: 'Led Zeppelin',
-    price: 81.00,
-    genre: 'Rock'
+    price: 81.0,
+    genre: 'Rock',
   },
   {
     id: 359,
     title: 'Heaven and Hell',
     artist: 'Black Sabbath',
-    price: 49.90,
-    genre: 'Heavy metal'
-  }
-]
+    price: 49.9,
+    genre: 'Heavy metal',
+  },
+];
 
 const searchAlbum = {
   id: 975,
   title: 'Houses of the Holy',
   artist: 'Led Zeppelin',
-  price: 81.00,
-  genre: 'Rock'
-}
+  price: 81.0,
+  genre: 'Rock',
+};
 
-const searchAlbumExistsInArray = albums.some((album) => album.id === searchAlbum.id)
+const searchAlbumExistsInArray = albums.some(
+  (album) => album.id === searchAlbum.id
+);
 
 if (searchAlbumExistsInArray) {
-  console.log(`${JSON.stringify(searchAlbum)} existe no array albums.`)
+  console.log(`${JSON.stringify(searchAlbum)} existe no array albums.`);
 }
 
 /*
@@ -160,10 +160,7 @@ obj.prop1 = 'x';
 // Para realmente modificar a prop8, apenas do obj, eu preciso fazer isso:
 const newObj = {
   ...obj,
-  prop6: [
-    obj.prop6[0],
-    { ...obj.prop6[1]}
-  ],
+  prop6: [obj.prop6[0], { ...obj.prop6[1] }],
   prop8: {
     ...obj.prop8,
   },
@@ -186,27 +183,33 @@ console.log('newObj:', newObj);
   Dica: pesquise por Object.entries.
 */
 
-const createHTMLElement = (element, properties) => {
-  const convertedProperties = Object.entries(properties);
+const createHTMLElement = (element, attributes) => {
   const createdElement = document.createElement(element);
+  const convertedProperties = Object.entries(attributes);
   // console.log('convertedProperties:', convertedProperties);
   // console.log('createdElement:', createdElement);
 
-  convertedProperties.forEach((convertedProperty) => {
-    convertedProperty.forEach((a, b, array) => {
-      createdElement.setAttribute(array[0], array[1])
-    })
-  });
+  // ! estamos utilizando o forEach, pois não desejamos realizar
+  // ! apenas um efeito colateral, e não retornar algum objeto
+  convertedProperties.forEach(([key, value]) =>
+    createdElement.setAttribute(key, value)
+  );
 
   return createdElement;
 };
 
-const properties = {
-  alt: 'Carro',
-  src: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2047&q=80'
+const attributes = {
+  type: 'radio',
+  id: 'input1',
+  name: 'main',
+  value: 'principal',
+  for: 'input1',
+  'data-js': 'input1',
 };
 
-console.log(createHTMLElement('img', properties))
+const inputField = createHTMLElement('input', attributes);
+
+console.log(inputField);
 
 /*
   07
