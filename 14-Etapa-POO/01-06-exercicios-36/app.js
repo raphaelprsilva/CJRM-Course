@@ -10,8 +10,6 @@
 
 const numbers = [50, 100, 50];
 
-// console.log([...numbers]);
-
 const sum = (x, y, z) => x + y + z;
 
 // console.log(sum(...numbers));
@@ -25,13 +23,17 @@ const sum = (x, y, z) => x + y + z;
     apenas a primeira letra maiúscula.
 */
 
-const name = 'raphael';
+const myName = 'raphael';
 
-const test = [...name];
-const firstLetter = test[0].slice(0, 2).toUpperCase();
-// console.log([firstLetter, ...test]);
+const firstLetterName = myName[0].toUpperCase();
+const remainingNameLetters = myName.slice(1);
+const nameAsArray = [firstLetterName, ...myName.slice(1)];
+const nameAsString = nameAsArray.join('');
 
-// console.log('');
+// console.log('firstLetterName:', firstLetterName);
+// console.log('remainingNameLetters:', remainingNameLetters);
+// console.log('nameAsArray:', nameAsArray);
+// console.log('nameAsString:', nameAsString);
 
 /*
   03
@@ -43,20 +45,13 @@ const firstLetter = test[0].slice(0, 2).toUpperCase();
 */
 
 const randomNumber = Math.round(Math.random() * 100);
-console.log('randomNumber:', randomNumber);
+// console.log('randomNumber:', randomNumber);
 
 const obj = {
   a: 1,
   b: 2,
+  ...(randomNumber > 50 ? { c: 3 } : { d: 4 }),
 };
-
-if (randomNumber > 50) {
-  const newObj = { ...obj, c: 3 };
-  console.log('newObj:', newObj);
-} else {
-  const newObj = { ...obj, d: 4 };
-  console.log('newObj:', newObj);
-}
 
 // console.log('obj:', obj);
 
@@ -67,18 +62,19 @@ if (randomNumber > 50) {
     criado permaneça intacto.
 */
 
-const h = (w) => {
-  w.d = 3;
-};
+const third = (object) => ({
+  ...object,
+  d: 3,
+});
 
-const q = (f) => h(f);
+const second = (object) => third(object);
+const first = (object) => second(object);
 
-const i = (b) => q(b);
+const object = { k: 't' };
+const newObj = first(object);
 
-const v = { k: 't' };
-
-i(v);
-console.log(v);
+// console.log('object:', object);
+// console.log('newObj:', newObj);
 
 /*
   05
@@ -111,12 +107,12 @@ const timestamps = [
   },
 ];
 
-const test1 = timestamps.reduce((accumulator, { date, value }) => {
-  accumulator = { ...accumulator, [`${date}`]: value };
+const values = timestamps.reduce((accumulator, { date, value }) => {
+  accumulator[date] = value;
   return accumulator;
 }, {});
 
-// console.log(test1);
+// console.log(values);
 
 /*
   06
@@ -148,12 +144,15 @@ const forEach = (arr, func) => {
   }
 };
 
-forEach(oddNumbers, (oddNumber, index, arr) => {
-  accumulator += oddNumber;
-  console.log(`"${oddNumber}" é o ${index + 1}º item do array ${arr}`);
-});
+// forEach(oddNumbers, (oddNumber, index, arr) => {
+//   const currentIndex = index + 1;
+//   const array = arr.join(', ');
+//   const message = `"${oddNumber}" é o ${currentIndex}º item do array [${array}]`;
+//   accumulator += oddNumber;
+//   console.log(message);
+// });
 
-console.log(accumulator);
+// console.log('accumulator:', accumulator);
 
 /*
   07
@@ -183,3 +182,38 @@ console.log(accumulator);
     3 No passo 3.4, se o slide exibido atualmente não corresponder ao index do 
       1º slide, o slide anterior deve ser exibido.
 */
+
+// ! obtendo as referências
+const slides = document.querySelectorAll('[data-js="carousel__item"]');
+const nextButton = document.querySelector('[data-js="carousel__button--next"]');
+const previousButton = document.querySelector(
+  '[data-js="carousel__button--prev"]'
+);
+const lastSlideIndex = slides.length - 1;
+
+let currentSlideIndex = 0;
+
+const manipulateSlidesClasses = (correctSlideIndex) => {
+  slides.forEach((carouselItem) =>
+    carouselItem.classList.remove('carousel__item--visible')
+  );
+  slides[correctSlideIndex].classList.add('carousel__item--visible');
+};
+
+nextButton.addEventListener('click', () => {
+  const correctSlideIndex =
+    currentSlideIndex === lastSlideIndex
+      ? (currentSlideIndex = 0)
+      : (currentSlideIndex += 1);
+
+  manipulateSlidesClasses(correctSlideIndex);
+});
+
+previousButton.addEventListener('click', () => {
+  const correctSlideIndex =
+    currentSlideIndex === 0
+      ? (currentSlideIndex = lastSlideIndex)
+      : (currentSlideIndex -= 1);
+
+  manipulateSlidesClasses(correctSlideIndex);
+});
